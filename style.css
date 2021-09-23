@@ -10,6 +10,7 @@
     user-select: none;
 }
 
+
 .game {
     display: flex;
     flex-direction: column;
@@ -18,14 +19,14 @@
     height: 100vh;
     background-color: rgb(196, 196, 196);
     overflow: hidden;
-    background: url(https://static.wikia.nocookie.net/tibia/images/f/f3/Client_Artwork_11.0.jpg/revision/latest/scale-to-width-down/1000?cb=20160915201042&path-prefix=en&format=original);
+    background: url(./backgroundimg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 
-.create-character-panel, .character-screen {
+.create-character-panel, .character-screen, .enemy-screen{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,3 +66,56 @@ input {
     border-color: rgb(128, 53, 28);
 }
 
+.character-screen {
+    animation-name: moveCharacterPanel;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 40%;
+}
+
+.enemy-screen {
+    animation-name: showEnemyPanel;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 40%;
+}
+
+.enemy-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@keyframes moveCharacterPanel{
+    0% {
+        position: absolute;
+        left: 40%;
+    }
+    100% {
+        position: absolute;
+        left: 300px;
+    }
+}
+
+@keyframes showEnemyPanel{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
+
+@media (max-width: 1500px) {
+    .enemy-screen {
+        left: 50%;
+    }
+}
+
+@media (max-width: 1300px) {
+    .enemy-screen {
+        left: 60%;
+    }
+}
