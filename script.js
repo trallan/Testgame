@@ -5,11 +5,13 @@ let characterClass;
 let newPlayer;
 
 class Player{
-    constructor(name, gender, role, health, attack){
+    constructor(name, gender, role, health, level, exp, attack){
         this.name = name;
         this.gender = gender;
         this.role = role;
         this.health = health;
+        this.level = level;
+        this.exp = exp;
         this.attack = attack;
     }
 }
@@ -46,11 +48,13 @@ let createCharacterPanel = () => {
 let showCharacterScreen = () => {
     game.innerHTML += `
         <div class="character-screen">
-            <div id="ch-name">${newPlayer.name}</div>
-            <div id="ch-gender">${newPlayer.gender}</div>
-            <div id="ch-role">${newPlayer.role}</div>
-            <div id="ch-health">${newPlayer.health}</div>
-            <div id="ch-attack">${newPlayer.attack}</div>
+            <div id="ch-name"><h3>${newPlayer.name}</h3></div>
+            <div id="ch-gender">Gender: ${newPlayer.gender}</div>
+            <div id="ch-role">Class: ${newPlayer.role}</div>
+            <div id="ch-health">Health: ${newPlayer.health}</div>
+            <div id="ch-level">Level: ${newPlayer.level}</div>
+            <div id="ch-exp">Exp: ${newPlayer.exp}</div>
+            <div id="ch-attack">Attack: ${newPlayer.attack}</div>
         </div>
     `
 }
@@ -90,11 +94,11 @@ let createCharacter = () => {
         characterClass = "Mage";
     }
     if(characterClass == "Knight"){
-        newPlayer = new Player(characterName, characterGender, characterClass, 250, 5)
+        newPlayer = new Player(characterName, characterGender, characterClass, 250, 1, 0, 5)
     }else if(characterClass == "Archer"){
-        newPlayer = new Player(characterName, characterGender, characterClass, 150, 10)
+        newPlayer = new Player(characterName, characterGender, characterClass, 150, 1, 0, 10)
     }else if(characterClass == "Mage"){
-        newPlayer = new Player(characterName, characterGender, characterClass, 100, 15)
+        newPlayer = new Player(characterName, characterGender, characterClass, 100, 1, 0, 15)
     }
     characterPanel.remove();
     showCharacterScreen();
