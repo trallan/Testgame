@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(196, 196, 196);
+    overflow: hidden;
+    background: url(https://static.wikia.nocookie.net/tibia/images/f/f3/Client_Artwork_11.0.jpg/revision/latest/scale-to-width-down/1000?cb=20160915201042&path-prefix=en&format=original);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.create-character-panel, .character-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 20rem;
+    height: 30rem;
+    margin: 1rem;
+    color: rgb(250, 216, 200);
+    text-shadow: 2px 2px 4px black;
+    border: 2px solid rgb(128, 53, 28);
+    border-radius: 5%;
+    background-color: rgba(66, 37, 28, 0.4);
+    letter-spacing: 1px;
+}
+
+button {
+    color: rgb(250, 216, 200);
+    background-color: rgb(163, 74, 44, 1);
+    border-color: rgb(128, 53, 28);
+    border-radius: 4px;
+    width: 8rem;
+    height: 2rem;
+    letter-spacing: 1px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.name, .gender, .class, input {
+    text-align: center;
+}
+
+input {
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    border-color: rgb(128, 53, 28);
+}
+
