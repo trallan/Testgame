@@ -116,8 +116,11 @@ let showBattleScreen = () => {
     let diceNum = document.querySelector('#dice-roll')
     let diceBtn = document.querySelector('#dice');
     diceBtn.addEventListener('click', function(){
-        diceRoll = Math.floor(Math.random() * 6) + 1;
-        diceNum.innerText = "< " + diceRoll + " >";
+        setTimeout(() => {
+            diceNum.classList.add('diceAnim')
+            diceRoll = Math.floor(Math.random() * 6) + 1;
+            diceNum.innerText = "< " + diceRoll + " >";
+        },10000)
     })
 };
 

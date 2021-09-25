@@ -70,8 +70,6 @@ input {
     animation-name: moveCharacterPanel;
     animation-duration: 4s;
     animation-fill-mode: forwards;
-    position: absolute;
-    left: 40%;
 }
 
 .enemy-screen {
@@ -99,14 +97,13 @@ input {
     text-decoration: underline;
 }
 
+
 @keyframes moveCharacterPanel{
     0% {
-        position: absolute;
-        left: 40%;
+        transform: translateX(0);
     }
     100% {
-        position: absolute;
-        left: 300px;
+        transform: translateX(-400px);
     }
 }
 
