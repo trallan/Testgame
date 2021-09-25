@@ -1,4 +1,5 @@
 let game = document.querySelector('.game');
+let enemyScreen;
 let characterName;
 let characterGender;
 let characterClass;
@@ -27,12 +28,14 @@ class Enemy{
     }
 }
 
-let snake = new Enemy('Snake', 50, 5, 20)
-let greywolf = new Enemy('Grey Wolf', 70, 15, 30)
-let pineman = new Enemy('Pineman', 120, 35, 40)
-let bear = new Enemy('Bear', 300, 45, 50)
-let pinetroll = new Enemy('Pinetroll', 210, 65, 50)
-let skeletonmage = new Enemy('Skeleton mage', 230, 75, 80)
+let enemys = {  
+    snake: new Enemy('Snake', 50, 5, 20),
+    greywolf: new Enemy('Grey Wolf', 70, 15, 30),
+    pineman: new Enemy('Pineman', 120, 35, 40),
+    bear: new Enemy('Bear', 300, 45, 50),
+    pinetroll: new Enemy('Pinetroll', 210, 65, 50),
+    skeletonmage: new Enemy('Skeleton mage', 230, 75, 80)
+}
 
 let createCharacterPanel = () => {
     game.innerHTML += `
@@ -81,15 +84,42 @@ let showEnemyScreen = () => {
     game.innerHTML += `
         <div class="enemy-screen">
             <h2>Choose your enemy</h2>
-            <div class="enemy-name" id="snake" value="snake">${snake.name}</div>
-            <div class="enemy-name" id="greywolf" value="greywolf">${greywolf.name}</div>
-            <div class="enemy-name" id="pineman" value="pineman">${pineman.name}</div>
-            <div class="enemy-name" id="bear" value="bear">${bear.name}</div>
-            <div class="enemy-name" id="pinetroll" value="pinetroll">${pinetroll.name}</div>
-            <div class="enemy-name" id="skeleton-mage" value="skeletonmage">${skeletonmage.name}</div>
+            <button class="enemy-name" id="snake" value="snake">${enemys.snake.name}</button>
+            <button class="enemy-name" id="greywolf" value="greywolf">${enemys.greywolf.name}</button>
+            <button class="enemy-name" id="pineman" value="pineman">${enemys.pineman.name}</button>
+            <button class="enemy-name" id="bear" value="bear">${enemys.bear.name}</button>
+            <button class="enemy-name" id="pinetroll" value="pinetroll">${enemys.pinetroll.name}</button>
+            <button class="enemy-name" id="skeleton-mage" value="skeletonmage">${enemys.skeletonmage.name}</button>
         </div>
     `
 }
+
+let showBattleScreen = () => {
+    let diceRoll = 6;
+    game.innerHTML += `
+        <div class="battle-screen">
+            <h2>Battleground</h2>
+            <div>
+                <p id="dice-roll">< ${diceRoll} ></p>
+                <button id="dice">Roll the Dice</button>
+            </div>
+            <div>
+                <p>${enemys[selectedEnemy].name}</p>
+                <p>Enemy health: ${enemys[selectedEnemy].health}</p>
+            </div>
+            <div>
+                <p>${newPlayer.name}</p>
+                <p>Player health: ${newPlayer.health}</p>
+            </div>
+        </div>
+    `
+    let diceNum = document.querySelector('#dice-roll')
+    let diceBtn = document.querySelector('#dice');
+    diceBtn.addEventListener('click', function(){
+        diceRoll = Math.floor(Math.random() * 6) + 1;
+        diceNum.innerText = "< " + diceRoll + " >";
+    })
+};
 
 
 let createCharacter = () => {
@@ -135,15 +165,23 @@ let createCharacter = () => {
     characterPanel.remove();
     showCharacterScreen();
     showEnemyScreen();
-    battleEnemy();
+
+    enemyScreen = document.getElementsByClassName('enemy-screen')[0];
+    let enemyPanel = document.getElementsByClassName('enemy-name');
+    for(let i = 0; i <= enemyPanel.length - 1; i++){
+        enemyPanel[i].addEventListener('click', battleEnemy);
+    }
 }
 
-let battleEnemy = () => {
-    console.log(Math.floor(Math.random() * snake.attack) + 5);
-    let max = newPlayer.attack * newPlayer.attackrate;
-    let damage = (Math.floor(Math.random() * max) + newPlayer.attack)
-    console.log(damage)
+let selectedEnemy;
+
+
+let battleEnemy = (e) => {
+    selectedEnemy = e.target.value;
+    enemyScreen.remove();
+    showBattleScreen();
 }
+
 
 
 
